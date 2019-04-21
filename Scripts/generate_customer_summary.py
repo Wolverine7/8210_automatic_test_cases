@@ -6,9 +6,8 @@ from selenium.webdriver.support.select import Select
 import time
 
 
-
 '''Written by Bobo Isamov'''
-class AddServiceTest(unittest.TestCase):
+class CustomerSummaryTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
@@ -24,24 +23,8 @@ class AddServiceTest(unittest.TestCase):
         password.clear()
         password.send_keys("Simcards1.")
         submit_buttom = driver.find_element_by_xpath("//input[@type='submit']").click()
-        product_link = driver.find_element_by_link_text("Products").click()
-        add_product_button = driver.find_element_by_link_text("Add Product").click()
-        customer_select = Select(driver.find_element_by_id('id_cust_name'))
-        customer_select.select_by_index(2)
-        product_category = driver.find_element_by_name("product")
-        product_category.clear()
-        product_category.send_keys("Steak")
-        description = driver.find_element_by_name('p_description')
-        description.clear()
-        description.send_keys("Medium Fried")
-        quantity = driver.find_element_by_name("quantity")
-        quantity.clear()
-        quantity.send_keys("2")
-        product_charge = driver.find_element_by_name("charge")
-        product_charge.clear()
-        product_charge.send_keys("150")
-        #submit_buttom = driver.find_element_by_css_selector("button")
-        product_charge.send_keys(Keys.RETURN)
+        customer_link = driver.find_element_by_link_text("Customers").click()
+        summary_buttom = driver.find_element_by_css_selector('.btn.btn-primary').click()
 
         assert "No results found." not in driver.page_source
 

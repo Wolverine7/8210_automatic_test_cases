@@ -8,12 +8,12 @@ import time
 
 
 '''Written by Bobo Isamov'''
-class AddServiceTest(unittest.TestCase):
+class AddProductTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
 
-    def test_add_service(self):
+    def test_admin_export(self):
         driver = self.driver
         driver.get("https://bobo-food-service.herokuapp.com/")
         login_link = driver.find_element_by_link_text("Login").click()
@@ -24,23 +24,25 @@ class AddServiceTest(unittest.TestCase):
         password.clear()
         password.send_keys("Simcards1.")
         submit_buttom = driver.find_element_by_xpath("//input[@type='submit']").click()
-        service_link = driver.find_element_by_link_text("Services").click()
-        add_service_button = driver.find_element_by_link_text("Add Service").click()
+        product_link = driver.find_element_by_link_text("Products").click()
+        add_product_button = driver.find_element_by_link_text("Add Product").click()
         customer_select = Select(driver.find_element_by_id('id_cust_name'))
         customer_select.select_by_index(2)
-        service_category = driver.find_element_by_name("service_category")
-        service_category.clear()
-        service_category.send_keys("Food Prep/Delivery")
-        description = driver.find_element_by_name('description')
+        product_category = driver.find_element_by_name("product")
+        product_category.clear()
+        product_category.send_keys("Steak")
+        description = driver.find_element_by_name('p_description')
         description.clear()
-        description.send_keys("A customer ordered a delivery order to be served for her")
-        location = driver.find_element_by_name("location")
-        location.clear()
-        location.send_keys("Omaha NE")
-        service_charge = driver.find_element_by_name("service_charge")
-        service_charge.clear()
-        service_charge.send_keys("150")
-        save_buttom = driver.find_element_by_css_selector('.save.btn.btn-default').click()
+        description.send_keys("Medium Fried")
+        quantity = driver.find_element_by_name("quantity")
+        quantity.clear()
+        quantity.send_keys("2")
+        product_charge = driver.find_element_by_name("charge")
+        product_charge.clear()
+        product_charge.send_keys("150")
+        #submit_buttom = driver.find_element_by_css_selector("button")
+        product_charge.send_keys(Keys.RETURN)
+
         assert "No results found." not in driver.page_source
 
 

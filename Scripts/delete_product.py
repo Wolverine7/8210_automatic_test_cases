@@ -7,7 +7,7 @@ import time
 
 
 '''Written by Bobo Isamov'''
-class CustomerDeleteTest(unittest.TestCase):
+class ProductDeleteTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
@@ -23,8 +23,8 @@ class CustomerDeleteTest(unittest.TestCase):
         password.clear()
         password.send_keys("Simcards1.")
         submit_buttom = driver.find_element_by_xpath("//input[@type='submit']").click()
-        customer_link = driver.find_element_by_link_text("Customers").click()
-        summary_buttom = driver.find_element_by_css_selector('.btn.btn-primary').click()
+        product_link = driver.find_element_by_link_text("Products").click()
+        delete_buttom = driver.find_element_by_css_selector('.btn.btn-danger').click()
 
         assert "No results found." not in driver.page_source
 
